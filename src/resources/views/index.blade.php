@@ -1,78 +1,80 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品一覧</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-@section('css')
-<link rel="stylesheet" href="{{ asset('css/index.css') }}">
-@endsection
+<header>
+    <h1>mogitate</h1>
+</header>
 
-@section('content')
+<div class="container">
 
-<div class="contact-form__content">
-  <div class="contact-form__heading">
-    <h2>お問い合わせ</h2>
-  </div>
-  <form class="form" action="contacts/confirm" method="post">
-    @csrf
-    <div class="form__group">
-      <div class="form__group-title">
-        <span class="form__label--item">お名前</span>
-        <span class="form__label--required">必須</span>
-      </div>
-      <div class="form__group-content">
-        <div class="form__input--text">
-          <input type="text" name="name" placeholder="テスト太郎" value="{{ old('name') }}" />
+    <aside class="sidebar">
+        <h2>商品一覧</h2>
+        <input type="text" placeholder="商品名で検索" class="search-box">
+        <button class="search-btn">検索</button>
+
+        <label class="sort-label">価格順で表示</label>
+        <select class="sort-select">
+            <option>価格で並べ替え</option>
+            <option>安い順</option>
+            <option>高い順</option>
+        </select>
+    </aside>
+
+    <main>
+
+        <div class="add-btn-wrapper">
+            <button class="add-btn">＋ 商品を追加</button>
         </div>
-        <div class="form__error">
-          @error('name')
-          {{ $message }}
-          @enderror
+
+        <div class="product-grid">
+            <div class="card">
+                <img src="kiwi.jpg" alt="キウイ">
+                <p class="name">キウイ</p>
+                <p class="price">¥800</p>
+            </div>
+            <div class="card">
+                <img src="strawberry.jpg" alt="ストロベリー">
+                <p class="name">ストロベリー</p>
+                <p class="price">¥1200</p>
+            </div>
+            <div class="card">
+                <img src="orange.jpg" alt="オレンジ">
+                <p class="name">オレンジ</p>
+                <p class="price">¥850</p>
+            </div>
+            <div class="card">
+                <img src="suika.jpg" alt="スイカ">
+                <p class="name">スイカ</p>
+                <p class="price">¥700</p>
+            </div>
+            <div class="card">
+                <img src="peach.jpg" alt="ピーチ">
+                <p class="name">ピーチ</p>
+                <p class="price">¥1000</p>
+            </div>
+            <div class="card">
+                <img src="grape.jpg" alt="シャインマスカット">
+                <p class="name">シャインマスカット</p>
+                <p class="price">¥1400</p>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="form__group">
-      <div class="form__group-title">
-        <span class="form__label--item">メールアドレス</span>
-        <span class="form__label--required">必須</span>
-      </div>
-      <div class="form__group-content">
-        <div class="form__input--text">
-          <input type="email" name="email" placeholder="test@example.com" value="{{ old('email') }}" />
+
+        <div class="pagination">
+            <span class="page active">1</span>
+            <span class="page">2</span>
+            <span class="page">3</span>
         </div>
-        <div class="form__error">
-          @error('email')
-          {{ $message }}
-          @enderror
-        </div>
-      </div>
-    </div>
-    <div class="form__group">
-      <div class="form__group-title">
-        <span class="form__label--item">電話番号</span>
-        <span class="form__label--required">必須</span>
-      </div>
-      <div class="form__group-content">
-        <div class="form__input--text">
-          <input type="tel" name="tel" placeholder="09012345678" value="{{ old('tel') }}" />
-        </div>
-        <div class="form__error">
-          @error('tel')
-          {{ $message }}
-          @enderror
-        </div>
-      </div>
-    </div>
-    <div class="form__group">
-      <div class="form__group-title">
-        <span class="form__label--item">お問い合わせ内容</span>
-      </div>
-      <div class="form__group-content">
-        <div class="form__input--textarea">
-          <textarea name="content" placeholder="資料をいただきたいです">{{ old('content') }}</textarea>
-        </div>
-      </div>
-    </div>
-    <div class="form__button">
-      <button class="form__button-submit" type="submit">送信</button>
-    </div>
-  </form>
+
+    </main>
+
 </div>
-@endsection
+
+</body>
+</html>
