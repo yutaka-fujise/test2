@@ -166,3 +166,12 @@ body {
     color: #fff;
     border-color: #ffcc33;
 }
+
+.page button {
+    margin: 0 6px;
+    padding: 6px 10px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+}

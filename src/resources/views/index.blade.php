@@ -40,7 +40,7 @@
 
     <div class="top-bar">
         <h2>商品一覧</h2>
-        <a href="{{ route('products.create') }}" class="add-btn">＋ 商品を追加</a>
+       <a href="{{ route('products.create') }}" class="add-btn">＋ 商品を追加</a>
     </div>
 
     <div class="items">
@@ -84,11 +84,13 @@
         </div>
 
         <div class="pagination">
+            <button>◀</button>
             <ul>
                 <li class="active">1</li>
                 <li>2</li>
                 <li>3</li>
             </ul>
+            <button>▶</button>
         </div>
     </section>
 
