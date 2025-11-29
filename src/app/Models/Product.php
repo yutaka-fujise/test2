@@ -9,5 +9,5 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'price', 'image']; // ★カラム名に合わせる
+    protected $fillable = ['name', 'price', 'image','season','description']; // ★カラム名に合わせる
 }

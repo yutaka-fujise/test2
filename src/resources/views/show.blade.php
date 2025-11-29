@@ -57,10 +57,10 @@
 
                 <label class="form-label season-label">季節</label>
                 <div class="radio-group">
-                    <label><input type="checkbox" name="season[]" value="春" @checked($product->春</label>
-                    <label><input type="checkbox" name="season[]" value="夏" @checked($product->夏</label>
-                    <label><input type="checkbox" name="season[]" value="秋" @checked($product->秋</label>
-                    <label><input type="checkbox" name="season[]" value="冬" @checked($product->冬</label>
+                     <label><input type="checkbox" name="season[]" value="春" {{ in_array('春', $product->season) ? 'checked' : '' }}> 春</label>
+                    <label><input type="checkbox" name="season[]" value="夏" {{ in_array('夏', $product->season) ? 'checked' : '' }}> 夏</label>
+                    <label><input type="checkbox" name="season[]" value="秋" {{ in_array('秋', $product->season) ? 'checked' : '' }}> 秋</label>
+                    <label><input type="checkbox" name="season[]" value="冬" {{ in_array('冬', $product->season) ? 'checked' : '' }}> 冬</label>
                 @error('season')
                     <p class="error-text">{{ $message }}</p>
                 @enderror
@@ -71,7 +71,8 @@
 
         {{-- 説明 --}}
         <label class="form-label">商品説明</label>
-        <textarea name="description" rows="6">{{ $product->description }}</textarea>
+        <textarea name="description" rows="6">{{ old('description', $product->description) }}
+        </textarea>
         @error('description')
             <p class="error-text">{{ $message }}</p>
         @enderror
