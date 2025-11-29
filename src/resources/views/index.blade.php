@@ -40,7 +40,7 @@
 
     </form>
 
-</aside>
+    </aside>
 
     <section class="content">
 
@@ -59,12 +59,12 @@
             <div class="price">¥{{ number_format($product->price) }}</div>
         </div>
     @endforeach
-</div>
+    </div>
 
         {{-- ページネーション数字リンク --}}
-@if ($products->hasPages())
-    <div class="pagination-container">
-        <ul class="pagination">
+        @if ($products->hasPages())
+            <div class="pagination-container">
+            <ul class="pagination">
             {{-- 前へ --}}
             @if ($products->onFirstPage())
                 <li class="disabled"><span>&laquo;</span></li>
@@ -89,7 +89,7 @@
             @endif
         </ul>
     </div>
-@endif
+    @endif
     </section>
 
 </main>

@@ -38,7 +38,7 @@
 
     {{-- ▼ファイル選択 --}}
     <input type="file" name="image" accept="image/*" onchange="previewImage(event)">
-</div>
+    </div>
 
             {{-- 右：商品名・値段・季節 --}}
             <div class="right-box">
