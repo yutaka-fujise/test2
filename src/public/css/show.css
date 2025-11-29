@@ -91,3 +91,27 @@ textarea {
     border-radius: 6px;
     cursor: pointer;
 }
+
+.delete-form {
+    display: inline;
+}
+
+.delete-btn {
+    background: #e74c3c;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background: #c0392b;
+}
+
+.error-text {
+    color: red;
+    font-size: 14px;
+    margin-top: 4px;
+}
