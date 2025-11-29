@@ -175,3 +175,43 @@ body {
     background: white;
     cursor: pointer;
 }
+
+.pagination-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.pagination {
+    list-style: none;
+    padding: 0;
+    display: inline-flex;
+    gap: 8px;
+}
+
+.pagination li {
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 14px;
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+}
+
+.pagination li a {
+    display: block;
+    text-decoration: none;
+    color: #555;
+}
+
+.pagination li.active {
+    background: #ffc107;
+    color: white;
+    font-weight: bold;
+}
+
+.pagination li.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}

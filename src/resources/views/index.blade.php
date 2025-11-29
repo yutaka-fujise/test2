@@ -13,28 +13,34 @@
 <header class="header">
     <div class="logo">mogitate</div>
 </header>
-
 <main class="container">
 
     <aside class="sidebar">
 
-        <h3>商品一覧</h3>
+    <h3>商品一覧</h3>
 
-        <div class="search-area">
-            <input type="text" placeholder="商品名で検索">
-            <button class="search-btn">検索</button>
-        </div>
+    {{-- 🔍 検索フォーム & 並び替えフォーム一体型 --}}
+    <form action="{{ route('products.index') }}" method="GET">
+
+        {{-- 🔍 キーワード検索 --}}
+        <input type="text" name="keyword" value="{{ $keyword ?? '' }}" placeholder="商品名で検索">
+        <button type="submit" class="search-btn">検索</button>
 
         <div class="sort-area">
             <label>価格順で表示</label>
-            <select>
-                <option>高い順に表示</option>
-                <option>安い順に表示</option>
+
+            <select name="sort">
+                <option value="">選択してください</option>
+                <option value="high" {{ (isset($sort) && $sort=='high') ? 'selected' : '' }}>高い順に表示</option>
+                <option value="low"  {{ (isset($sort) && $sort=='low')  ? 'selected' : '' }}>安い順に表示</option>
             </select>
-            <button class="sort-btn">高い順に表示</button>
+
+            <button type="submit" class="sort-btn">並び替え</button>
         </div>
 
-    </aside>
+    </form>
+
+</aside>
 
     <section class="content">
 
@@ -44,54 +50,44 @@
     </div>
 
     <div class="items">
-
-            <div class="item">
-                <img src="img/muscat.png">
-                <p class="name">シャインマスカット</p>
-                <p class="price">¥1400</p>
-            </div>
-
-            <div class="item">
-                <img src="img/strawberry.png">
-                <p class="name">ストロベリー</p>
-                <p class="price">¥1200</p>
-            </div>
-
-            <div class="item">
-                <img src="img/peach.png">
-                <p class="name">ピーチ</p>
-                <p class="price">¥1000</p>
-            </div>
-
-            <div class="item">
-                <img src="img/orange.png">
-                <p class="name">オレンジ</p>
-                <p class="price">¥850</p>
-            </div>
-
-            <div class="item">
-                <img src="img/kiwi.png">
-                <p class="name">キウイ</p>
-                <p class="price">¥800</p>
-            </div>
-
-            <div class="item">
-                <img src="img/watermelon.png">
-                <p class="name">スイカ</p>
-                <p class="price">¥700</p>
-            </div>
-
+         @foreach($products as $product)
+        <div class="item">
+            <img src="{{ asset('storage/' . $product->image) }}">
+            <p class="name">{{ $product->name }}</p>
+            <p class="price">¥{{ number_format($product->price) }}</p>
+        </div>
+        @endforeach
         </div>
 
-        <div class="pagination">
-            <button>◀</button>
-            <ul>
-                <li class="active">1</li>
-                <li>2</li>
-                <li>3</li>
-            </ul>
-            <button>▶</button>
-        </div>
+        {{-- ページネーション数字リンク --}}
+@if ($products->hasPages())
+    <div class="pagination-container">
+        <ul class="pagination">
+            {{-- 前へ --}}
+            @if ($products->onFirstPage())
+                <li class="disabled"><span>&laquo;</span></li>
+            @else
+                <li><a href="{{ $products->previousPageUrl() }}">&laquo;</a></li>
+            @endif
+
+            {{-- ページ番号 --}}
+            @foreach ($products->links()->elements[0] ?? [] as $page => $url)
+                @if ($page == $products->currentPage())
+                    <li class="active"><span>{{ $page }}</span></li>
+                @else
+                    <li><a href="{{ $url }}">{{ $page }}</a></li>
+                @endif
+            @endforeach
+
+            {{-- 次へ --}}
+            @if ($products->hasMorePages())
+                <li><a href="{{ $products->nextPageUrl() }}">&raquo;</a></li>
+            @else
+                <li class="disabled"><span>&raquo;</span></li>
+            @endif
+        </ul>
+    </div>
+@endif
     </section>
 
 </main>
