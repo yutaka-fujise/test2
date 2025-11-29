@@ -59,4 +59,15 @@ class ProductController extends Controller
 
     return redirect()->route('products.index')->with('success', '登録');
     }
+
+    public function show($id)
+{
+    // クリックされた商品を取得
+    $product = Product::findOrFail($id);
+
+    // 他の商品一覧も渡しておく（サイドバーや関連商品表示用）
+    $products = Product::orderBy('id','desc')->paginate(6);
+
+    return view('show', compact('product', 'products'));
+}
 }

@@ -50,14 +50,16 @@
     </div>
 
     <div class="items">
-         @foreach($products as $product)
+    @foreach($products as $product)
         <div class="item">
-            <img src="{{ asset('storage/' . $product->image) }}">
-            <p class="name">{{ $product->name }}</p>
-            <p class="price">¥{{ number_format($product->price) }}</p>
+            <a href="{{ route('products.show', $product->id) }}">
+                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
+            </a>
+            <div class="name">{{ $product->name }}</div>
+            <div class="price">¥{{ number_format($product->price) }}</div>
         </div>
-        @endforeach
-        </div>
+    @endforeach
+</div>
 
         {{-- ページネーション数字リンク --}}
 @if ($products->hasPages())
