@@ -43,20 +43,23 @@ class ProductController extends Controller
     {
     // バリデーション
     $validated = $request->validate([
-        'name'        => 'required',
-        'price'       => 'required|numeric',
-        'image'       => 'required|mimes:jpg,jpeg,png|max:2048',
-        'season'      => 'required|array',
-        'description' => 'required'
-    ],[
-        'name.required'        => '商品名は必ず入力してください。',
-        'price.required'       => '価格は必須です。',
-        'price.numeric'        => '価格は数値で入力してください。',
-        'image.required'       => '画像を選択してください。',
-        'image.mimes'          => 'アップロードできる画像は jpg / png のみです。',
-        'season.required'      => '季節を1つ以上選択してください。',
-        'description.required' => '商品説明を入力してください。',
-    ]);
+    'name'        => 'required',
+    'price'       => ['required', 'numeric', 'between:0,10000'],
+    'image'       => ['required', 'mimes:jpeg,png,jpg', 'max:4096'],
+    'season'      => 'required|array',
+    'description' => ['required','string','max:120']
+],[
+    'name.required'        => '商品名は必ず入力してください。',
+    'price.required'       => '価格は必須です。',
+    'price.numeric'        => '価格は数値で入力してください。',
+    'price.between'        => '価格は0〜10000円の範囲で入力してください。',
+    'image.required'       => '画像を選択してください。',
+    'image.mimes'          => 'アップロードできる画像は jpg / jpeg / png のみです。',
+    'image.max'            => '画像サイズは4MB以内にしてください。',
+    'season.required'      => '季節を1つ以上選択してください。',
+    'description.required' => '商品説明を入力してください。',
+    'description.max'      => '商品説明は120文字以内で入力してください。',
+]);
 
     // 画像保存
     $path = $request->file('image')->store('images', 'public');

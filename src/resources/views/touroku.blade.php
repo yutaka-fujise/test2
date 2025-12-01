@@ -35,7 +35,7 @@
 
         <!-- 商品画像 -->
         <label>商品画像 <span class="required">必須</span></label>
-        <input type="file" name="image">
+        <input type="file" name="image" accept=".jpg,.jpeg,.png">
         @error('image')
             <p class="error-text">{{ $message }}</p>
         @enderror
