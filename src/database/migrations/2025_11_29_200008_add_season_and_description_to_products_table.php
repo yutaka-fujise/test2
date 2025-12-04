@@ -13,7 +13,7 @@ class AddSeasonAndDescriptionToProductsTable extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) { $table->text('description')->nullable();
+        Schema::table('products', function (Blueprint $table) {
         $table->json('season')->nullable();
         });
     }
@@ -25,8 +25,7 @@ class AddSeasonAndDescriptionToProductsTable extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) { $table->dropColumn('description');
-        $table->dropColumn('season');
+        Schema::table('products', function (Blueprint $table) { $table->dropColumn('season');
         });
     }
 }
