@@ -45,7 +45,6 @@
     <section class="content">
 
     <div class="top-bar">
-        <h2>商品一覧</h2>
        <a href="{{ route('products.create') }}" class="add-btn">＋ 商品を追加</a>
     </div>
 
@@ -53,7 +52,7 @@
     @foreach($products as $product)
         <div class="item">
             <a href="{{ route('products.show', $product->id) }}">
-                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
+                <img src="{{ asset('img/' . $product->image) }}" alt="{{ $product->name }}">
             </a>
             <div class="name">{{ $product->name }}</div>
             <div class="price">¥{{ number_format($product->price) }}</div>

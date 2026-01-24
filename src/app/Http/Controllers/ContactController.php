@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class ContactController extends Controller
 {
   public function index()
   {
-    return view('index');
+    $products = Product::paginate(10);
+    return view('index', compact('products'));
   }
 }

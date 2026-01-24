@@ -104,8 +104,15 @@ class ProductController extends Controller
     $product->description = $request->description;
 
     if ($request->hasFile('image')) {
-        $path = $request->file('image')->store('images', 'public');
-        $product->image = $path;
+
+    $fileName = time() . '_' . $request->file('image')->getClientOriginalName();
+
+    $request->file('image')->move(
+        public_path('img'),
+        $fileName
+    );
+
+    $product->image = $fileName;
     }
 
     $product->save();
